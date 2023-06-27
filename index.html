@@ -4,10 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-Sketch</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Etch a Sketch</h1>
-    
+    <button class="grid">create grids</button>
+    <div class="container"></div>
+
+    <script>
+        const myDiv = document.querySelector('.container');
+        const btn = document.querySelector('.grid');
+
+
+
+        function createGrid() {
+            const n = prompt("please enter your desired size for the grid. not bigger than 100");
+            if (n < 0 || n > 100) {
+                alert("please enter a number between 0 and 100");
+                return;
+            };
+            myDiv.innerHTML = "";
+            for (let i = 0; i < n * n; i++) {
+            const div = document.createElement('div');
+            div.textContent = i;
+            div.classList.add('flexItems');
+            div.style.width = `${100/n}%`;
+            div.addEventListener('mouseover', e => {
+                e.target.style.backgroundColor = "black";
+                e.target.style.cursor = "grab";
+            })
+            myDiv.appendChild(div);
+
+        }
+
+
+        }
+
+        btn.addEventListener('click', createGrid);
+
+        for (let i = 0; i < 16 * 16; i++) {
+            const div = document.createElement('div');
+            div.textContent = i;
+            div.classList.add('flexItems');
+            div.style.width = `${100/16}%`;
+            div.addEventListener('mouseover', e => {
+                e.target.style.backgroundColor = "black";
+                e.target.style.cursor = "grab";
+            })
+            myDiv.appendChild(div);
+
+        }
+
+
+
+    </script>  
 </body>
 </html>
