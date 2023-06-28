@@ -8,16 +8,54 @@
 </head>
 <body>
     <h1>Etch a Sketch</h1>
-    <button class="grid">create grids</button>
+    <div class="buttons">
+        <button class="grid">create grids</button>
+        <button class="reset">reset</button>
+    </div>
+
     <div class="container"></div>
 
     <script>
         const myDiv = document.querySelector('.container');
-        const btn = document.querySelector('.grid');
+        const gridBtn = document.querySelector('.grid');
+        const resetBtn = document.querySelector('.reset');
+
+        function createGrid(gridSize=16) {
+            for (let i = 0; i < gridSize * gridSize; i++) {
+            const div = document.createElement('div');
+            div.textContent = i;
+            div.classList.add('flexItems');
+            div.style.width = `${100/gridSize}%`;
+            div.addEventListener('mouseover', e => {
+                e.target.style.backgroundColor = "black";
+                e.target.style.cursor = "grab";
+            })
+            myDiv.appendChild(div);
+            }
+        }
+
+
+        gridBtn.addEventListener('click', () => {
+            n = prompt("please enter the grid size (one direction) between 0 and 100");
+
+            if (n < 0 || n > 100) {
+                alert("please enter a number between 0 and 100");
+                return;
+            }
+            myDiv.innerHTML = "";
+            createGrid(n);
+        })
+
+        resetBtn.addEventListener('click',() => {
+            myDiv.innerHTML = "";
+            createGrid();
+        });
+
+        createGrid();
 
 
 
-        function createGrid() {
+/*         function createGrid() {
             const n = prompt("please enter your desired size for the grid. not bigger than 100");
             if (n < 0 || n > 100) {
                 alert("please enter a number between 0 and 100");
@@ -40,7 +78,7 @@
 
         }
 
-        btn.addEventListener('click', createGrid);
+        gridBtn.addEventListener('click', createGrid);
 
         for (let i = 0; i < 16 * 16; i++) {
             const div = document.createElement('div');
@@ -53,7 +91,7 @@
             })
             myDiv.appendChild(div);
 
-        }
+        } */
 
 
 
